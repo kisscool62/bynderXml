@@ -1,14 +1,11 @@
 package com.mycompany.bynder.service.bynder;
 
-import com.bynder.sdk.model.Media;
+import com.mycompany.bynder.domain.BinderMedia;
 
 import java.util.List;
 
-/**
- * Created by pauregan for Serial Development. serial.ch
- */
 public interface BynderMediaService {
 
-    List<Media> synchronousQuery() throws IllegalAccessException;
+    List<BinderMedia> synchronousQuery() throws IllegalAccessException;
 
 }

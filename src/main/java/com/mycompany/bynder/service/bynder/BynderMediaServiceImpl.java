@@ -5,13 +5,13 @@ import com.bynder.sdk.model.MediaType;
 import com.bynder.sdk.query.MediaQuery;
 import com.bynder.sdk.service.AssetBankService;
 import com.bynder.sdk.service.BynderService;
+import com.mycompany.bynder.domain.BinderMedia;
 import retrofit2.Response;
 
 import java.util.List;
 
-/**
- * Created by pauregan for Serial Development. serial.ch
- */
+import static java.util.stream.Collectors.toList;
+
 public class BynderMediaServiceImpl implements BynderMediaService {
 
     private final BynderService bynderService;
@@ -20,7 +20,7 @@ public class BynderMediaServiceImpl implements BynderMediaService {
         this.bynderService = bynderService;
     }
 
-    public List<Media> synchronousQuery() throws IllegalAccessException {
+    public List<BinderMedia> synchronousQuery() throws IllegalAccessException {
         // Get an instance of the asset bank service to perform Bynder Asset Bank operations.
         AssetBankService assetBankService = bynderService.getAssetBankService();
 
@@ -33,6 +33,9 @@ public class BynderMediaServiceImpl implements BynderMediaService {
                                 .setPage(1))
                         .blockingSingle();
 
-        return mediaResponse.body();
+        return mediaResponse.body()
+                .stream()
+                .map(BinderMedia::create)
+                .collect(toList());
     }
 }
