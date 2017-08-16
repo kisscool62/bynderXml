@@ -1,11 +1,9 @@
 package com.mycompany.bynder.service.bynder;
 
-import com.mycompany.bynder.domain.BinderMedia;
-
-import java.util.List;
+import com.mycompany.bynder.domain.media.BynderMedias;
 
 public interface BynderMediaService {
 
-    List<BinderMedia> synchronousQuery() throws IllegalAccessException;
+    BynderMedias synchronousQuery() throws IllegalAccessException;
 
 }

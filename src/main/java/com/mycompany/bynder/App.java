@@ -1,13 +1,9 @@
 package com.mycompany.bynder;
 
 import com.bynder.sdk.service.BynderService;
-import com.mycompany.bynder.domain.BinderMedia;
 import com.mycompany.bynder.service.bynder.BynderServiceFactory;
 
 import java.net.MalformedURLException;
-import java.util.List;
-
-import static com.mycompany.bynder.service.bynder.BynderMediaServiceFactory.create;
 
 /**
  * Hello world!
@@ -21,7 +17,7 @@ public class App {
                         "token",
                         "token secret");
 
-        List<BinderMedia> medias = create(bynderService).synchronousQuery();
+        // List<BynderMedia> medias = create(bynderService).synchronousQuery();
 
 
     }
