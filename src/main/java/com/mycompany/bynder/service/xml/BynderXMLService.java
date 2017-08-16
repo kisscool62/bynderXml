@@ -6,8 +6,8 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public interface BynderXMLService <Asset extends BynderAssetCollection>{
-    File toXMLFile(String fileName, Asset assetCollection) throws JAXBException, FileNotFoundException;
+public interface BynderXMLService <AssetCollection extends BynderAssetCollection>{
+    File toXMLFile(String fileName, AssetCollection assetCollection) throws JAXBException, FileNotFoundException;
 
-    String toXMLString(Asset assetCollection) throws JAXBException;
+    String toXMLString(AssetCollection assetCollection) throws JAXBException;
 }
