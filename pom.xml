@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
+
         <bynder.version>1.0.4.1</bynder.version>
         <junit.version>4.12</junit.version>
         <guava.version>23.0</guava.version>
