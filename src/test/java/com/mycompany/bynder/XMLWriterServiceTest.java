@@ -2,7 +2,7 @@ package com.mycompany.bynder;
 
 import com.mycompany.bynder.domain.media.BynderMedia;
 import com.mycompany.bynder.domain.media.BynderMedias;
-import com.mycompany.bynder.service.bynder.BynderMediaService;
+import com.mycompany.bynder.service.bynder.BynderAssetService;
 import com.mycompany.bynder.service.xml.BynderMediaXMLServiceImpl;
 import com.mycompany.bynder.service.xml.BynderXMLService;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,20 +23,20 @@ import static org.mockito.Mockito.when;
 public class XMLWriterServiceTest {
 
     @Test
-    public void shouldWriteFromMedia() throws IllegalAccessException, JAXBException, FileNotFoundException {
+    public void shouldWriteFromMedia() throws IllegalAccessException, JAXBException, IOException {
         //given
-        BynderMediaService mockBynderMediaService = mock(BynderMediaService.class);
+        BynderAssetService mockBynderAssetService = mock(BynderAssetService.class);
 
-        List<BynderMedia> dummyList = new ArrayList<>(2);
+        List<BynderMedia> dummyList = new ArrayList<BynderMedia>(2);
         dummyList.add(newXMLMedia("first one"));
         dummyList.add(newXMLMedia("second one"));
         BynderMedias bynderMedias = new BynderMedias(dummyList);
 
-        when(mockBynderMediaService.synchronousQuery()).thenReturn(bynderMedias);
+        when(mockBynderAssetService.synchronousQuery()).thenReturn(bynderMedias);
 
         //when
 
-        BynderXMLService<BynderMedias> bynderXMLService = new BynderMediaXMLServiceImpl();
+        BynderXMLService bynderXMLService = new BynderMediaXMLServiceImpl();
         File xmlFile = bynderXMLService.toXMLFile("xmlFile.xml", bynderMedias);
 
         JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
