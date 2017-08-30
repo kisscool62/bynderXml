@@ -8,6 +8,7 @@ import com.mycompany.bynder.domain.media.BynderMedia;
 import com.mycompany.bynder.domain.media.BynderMedias;
 import retrofit2.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.bynder.sdk.model.MediaType.IMAGE;
@@ -34,9 +35,14 @@ public class BynderMediaServiceImpl implements BynderMediaService {
                                 .setPage(1))
                         .blockingSingle();
         return new BynderMedias(
-                mediaResponse.body()
-                    .stream()
-                    .map(BynderMedia::create)
-                    .collect(toList()));
+                collect(mediaResponse));
+    }
+
+    private List<BynderMedia> collect(Response<List<Media>> mediaResponse) {
+        List<BynderMedia> bynderMediaList = new ArrayList<BynderMedia>();
+        for (Media media : mediaResponse.body()) {
+            bynderMediaList.add(BynderMedia.create(media));
+        }
+        return bynderMediaList;
     }
 }

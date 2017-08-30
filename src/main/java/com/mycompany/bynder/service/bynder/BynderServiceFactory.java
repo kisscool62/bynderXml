@@ -20,11 +20,12 @@ public class BynderServiceFactory {
             String token,
             String tokenSecret) throws MalformedURLException {
 
-        Preconditions.checkNotNull(urlString);
-        Preconditions.checkNotNull(consumerKey);
-        Preconditions.checkNotNull(consumerSecret);
-        Preconditions.checkNotNull(token);
-        Preconditions.checkNotNull(tokenSecret);
+
+        checkNotNull(urlString);
+        checkNotNull(consumerKey);
+        checkNotNull(consumerSecret);
+        checkNotNull(token);
+        checkNotNull(tokenSecret);
 
         return BynderServiceImpl.create(
                 new Settings(
@@ -33,6 +34,10 @@ public class BynderServiceFactory {
                         consumerSecret,
                         token,
                         tokenSecret));
+
+    }
+
+    private static void checkNotNull(String object) {
 
     }
 }

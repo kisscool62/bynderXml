@@ -22,7 +22,7 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMedias>
     public File toXMLFile(String fileName, BynderMedias bynderMedias) throws JAXBException, FileNotFoundException {
         JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
 
-        JAXBElement<BynderMedias> jaxbElement = new JAXBElement<>(
+        JAXBElement<BynderMedias> jaxbElement = new JAXBElement<BynderMedias>(
                 new QName(ROOT_NAME),
                 BynderMedias.class,
                 bynderMedias);
@@ -39,7 +39,7 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMedias>
     public String toXMLString(BynderMedias bynderMedias) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
 
-        JAXBElement<BynderMedias> jaxbElement = new JAXBElement<>(
+        JAXBElement<BynderMedias> jaxbElement = new JAXBElement<BynderMedias>(
                 new QName(ROOT_NAME),
                 BynderMedias.class,
                 bynderMedias);

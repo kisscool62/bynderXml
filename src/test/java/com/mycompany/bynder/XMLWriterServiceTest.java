@@ -27,7 +27,7 @@ public class XMLWriterServiceTest {
         //given
         BynderMediaService mockBynderMediaService = mock(BynderMediaService.class);
 
-        List<BynderMedia> dummyList = new ArrayList<>(2);
+        List<BynderMedia> dummyList = new ArrayList<BynderMedia>(2);
         dummyList.add(newXMLMedia("first one"));
         dummyList.add(newXMLMedia("second one"));
         BynderMedias bynderMedias = new BynderMedias(dummyList);
@@ -46,6 +46,7 @@ public class XMLWriterServiceTest {
 
         //then
         assertThat(bynderMedias).isEqualTo(unmarshal);
+
 
         //System.out.println(bynderXMLService.toXMLString(bynderMedias));
 
