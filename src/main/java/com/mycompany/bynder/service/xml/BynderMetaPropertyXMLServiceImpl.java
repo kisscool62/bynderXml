@@ -20,10 +20,11 @@ import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
 public class BynderMetaPropertyXMLServiceImpl implements BynderXMLService<BynderMetapropertyCollection>{
 
-    private class MediaOutputResolver extends SchemaOutputResolver{
+    private class MetapropertyOutputResolver extends SchemaOutputResolver{
+        private final String METAPROPERTY_XSD_FILENAME = "schemaMetaproperty.xsd";
         @Override
         public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
-            File file = new File(suggestedFileName);
+            File file = new File(METAPROPERTY_XSD_FILENAME);
             StreamResult result = new StreamResult(file);
             result.setSystemId(file.toURI().toURL().toString());
             return result;
@@ -32,7 +33,7 @@ public class BynderMetaPropertyXMLServiceImpl implements BynderXMLService<Bynder
 
     public File toXMLFile(String fileName, BynderMetapropertyCollection bynderMetapropertyCollection) throws JAXBException, IOException {
         JAXBContext jaxbContext = JAXBContext.newInstance(BynderMetapropertyCollection.class);
-        jaxbContext.generateSchema(new MediaOutputResolver());
+        jaxbContext.generateSchema(new MetapropertyOutputResolver());
         JAXBElement<BynderMetapropertyCollection> jaxbElement = new JAXBElement<BynderMetapropertyCollection>(
                 new QName(ROOT_NAME),
                 BynderMetapropertyCollection.class,

@@ -15,16 +15,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import static com.mycompany.bynder.domain.media.BynderMediaCollection.ROOT_NAME;
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
 public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMediaCollection>{
 
-    private static final String ROOT_NAME = "bynderMedias";
-
     private class MediaOutputResolver extends SchemaOutputResolver{
+        private final String MEDIA_XSD_FILENAME = "schemaMedia.xsd";
         @Override
         public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
-            File file = new File(suggestedFileName);
+            File file = new File(MEDIA_XSD_FILENAME);
             StreamResult result = new StreamResult(file);
             result.setSystemId(file.toURI().toURL().toString());
             return result;
