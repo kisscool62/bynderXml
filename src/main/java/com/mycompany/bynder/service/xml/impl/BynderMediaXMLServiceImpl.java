@@ -1,12 +1,14 @@
-package com.mycompany.bynder.service.xml;
+package com.mycompany.bynder.service.xml.impl;
 
 import com.mycompany.bynder.domain.media.BynderMediaCollection;
+import com.mycompany.bynder.service.xml.api.BynderMediaXMLService;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.SchemaOutputResolver;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 import javax.xml.transform.Result;
 import javax.xml.transform.stream.StreamResult;
@@ -18,7 +20,7 @@ import java.io.StringWriter;
 import static com.mycompany.bynder.domain.media.BynderMediaCollection.ROOT_NAME;
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
-public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMediaCollection>{
+public class BynderMediaXMLServiceImpl implements BynderMediaXMLService {
 
     private class MediaOutputResolver extends SchemaOutputResolver{
         private final String MEDIA_XSD_FILENAME = "schemaMedia.xsd";
@@ -61,5 +63,13 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMediaCo
         StringWriter stringWriter = new StringWriter();
         jaxbMarshaller.marshal(jaxbElement, stringWriter);
         return stringWriter.toString();
+    }
+
+    public BynderMediaCollection fromXMLFile(File xmlFile) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMediaCollection.class);
+
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        BynderMediaCollection mediaCollection = (BynderMediaCollection) unmarshaller.unmarshal(xmlFile);
+        return mediaCollection;
     }
 }

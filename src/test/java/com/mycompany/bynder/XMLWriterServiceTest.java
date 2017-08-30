@@ -3,8 +3,8 @@ package com.mycompany.bynder;
 import com.mycompany.bynder.domain.media.BynderMedia;
 import com.mycompany.bynder.domain.media.BynderMediaCollection;
 import com.mycompany.bynder.service.bynder.BynderAssetService;
-import com.mycompany.bynder.service.xml.BynderMediaXMLServiceImpl;
-import com.mycompany.bynder.service.xml.BynderXMLService;
+import com.mycompany.bynder.service.xml.impl.BynderMediaXMLServiceImpl;
+import com.mycompany.bynder.service.xml.api.BynderXMLService;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBContext;

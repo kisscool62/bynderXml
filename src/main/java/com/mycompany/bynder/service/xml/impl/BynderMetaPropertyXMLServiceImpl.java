@@ -1,12 +1,14 @@
-package com.mycompany.bynder.service.xml;
+package com.mycompany.bynder.service.xml.impl;
 
 import com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection;
+import com.mycompany.bynder.service.xml.api.BynderMetapropertyXMLService;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.SchemaOutputResolver;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.namespace.QName;
 import javax.xml.transform.Result;
 import javax.xml.transform.stream.StreamResult;
@@ -18,7 +20,7 @@ import java.io.StringWriter;
 import static com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection.ROOT_NAME;
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
-public class BynderMetaPropertyXMLServiceImpl implements BynderXMLService<BynderMetapropertyCollection>{
+public class BynderMetaPropertyXMLServiceImpl implements BynderMetapropertyXMLService {
 
     private class MetapropertyOutputResolver extends SchemaOutputResolver{
         private final String METAPROPERTY_XSD_FILENAME = "schemaMetaproperty.xsd";
@@ -45,6 +47,15 @@ public class BynderMetaPropertyXMLServiceImpl implements BynderXMLService<Bynder
         FileOutputStream fileOutputStream = new FileOutputStream(xmlFile);
         jaxbMarshaller.marshal(jaxbElement, fileOutputStream);
         return xmlFile;
+    }
+
+    public BynderMetapropertyCollection fromXMLFile(File xmlFile) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMetapropertyCollection.class);
+
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        final BynderMetapropertyCollection metapropertyCollection = (BynderMetapropertyCollection) unmarshaller.unmarshal(xmlFile);
+
+        return metapropertyCollection;
     }
 
 

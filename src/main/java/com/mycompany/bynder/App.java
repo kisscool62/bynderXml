@@ -8,8 +8,8 @@ import com.mycompany.bynder.service.bynder.BynderMetapropertyService;
 import com.mycompany.bynder.service.bynder.BynderServiceFactory;
 import com.mycompany.bynder.service.bynder.media.BynderMediaServiceFactory;
 import com.mycompany.bynder.service.bynder.metaproperty.BynderMetapropertyServiceFactory;
-import com.mycompany.bynder.service.xml.BynderMediaXMLServiceImpl;
-import com.mycompany.bynder.service.xml.BynderXMLService;
+import com.mycompany.bynder.service.xml.impl.BynderMediaXMLServiceImpl;
+import com.mycompany.bynder.service.xml.api.BynderXMLService;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
