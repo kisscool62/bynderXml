@@ -5,5 +5,7 @@ import com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection;
 public interface BynderMetapropertyService extends BynderAssetService<BynderMetapropertyCollection> {
 
     BynderMetapropertyCollection getAll() throws IllegalAccessException;
+
+    void post(BynderMetapropertyCollection metapropertyCollection) throws IllegalAccessException;
 }
 

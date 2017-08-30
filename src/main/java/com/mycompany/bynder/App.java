@@ -8,10 +8,14 @@ import com.mycompany.bynder.service.bynder.BynderMetapropertyService;
 import com.mycompany.bynder.service.bynder.BynderServiceFactory;
 import com.mycompany.bynder.service.bynder.media.BynderMediaServiceFactory;
 import com.mycompany.bynder.service.bynder.metaproperty.BynderMetapropertyServiceFactory;
+import com.mycompany.bynder.service.xml.api.BynderMediaXMLService;
+import com.mycompany.bynder.service.xml.api.BynderMetapropertyXMLService;
 import com.mycompany.bynder.service.xml.impl.BynderMediaXMLServiceImpl;
 import com.mycompany.bynder.service.xml.api.BynderXMLService;
+import com.mycompany.bynder.service.xml.impl.BynderMetaPropertyXMLServiceImpl;
 
 import javax.xml.bind.JAXBException;
+import java.io.File;
 import java.io.IOException;
 
 public class App {
@@ -31,11 +35,12 @@ public class App {
 
         BynderMetapropertyService metapropertyService = BynderMetapropertyServiceFactory.create(service);
         BynderMetapropertyCollection bynderMetapropertyCollection = metapropertyService.getAll();
-        BynderXMLService bynderMetaXMLService = new BynderMediaXMLServiceImpl();
+        BynderMetapropertyXMLService bynderMetaXMLService = new BynderMetaPropertyXMLServiceImpl();
         bynderMetaXMLService.toXMLFile("xmlMetaProperty.xml", bynderMetapropertyCollection);
 
+        bynderMetapropertyCollection = bynderMetaXMLService.fromXMLFile(new File("xmlMetaProperty.xml"));
 
-
+        metapropertyService.post(bynderMetapropertyCollection);
 
     }
 }
