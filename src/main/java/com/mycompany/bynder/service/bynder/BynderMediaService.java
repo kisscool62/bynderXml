@@ -1,9 +1,9 @@
 package com.mycompany.bynder.service.bynder;
 
-import com.mycompany.bynder.domain.media.BynderMedias;
+import com.mycompany.bynder.domain.media.BynderMediaCollection;
 
-public interface BynderMediaService extends BynderAssetService<BynderMedias> {
+public interface BynderMediaService extends BynderAssetService<BynderMediaCollection> {
 
-    BynderMedias synchronousQuery() throws IllegalAccessException;
+    BynderMediaCollection synchronousQuery() throws IllegalAccessException;
 }
 

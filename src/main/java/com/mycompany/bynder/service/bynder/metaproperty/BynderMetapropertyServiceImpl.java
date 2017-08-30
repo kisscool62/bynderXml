@@ -4,8 +4,8 @@ import com.bynder.sdk.model.Metaproperty;
 import com.bynder.sdk.query.MetapropertyQuery;
 import com.bynder.sdk.service.AssetBankService;
 import com.bynder.sdk.service.BynderService;
-import com.mycompany.bynder.domain.metaproperty.BynderMetaproperties;
 import com.mycompany.bynder.domain.metaproperty.BynderMetaproperty;
+import com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection;
 import com.mycompany.bynder.service.bynder.BynderAssetService;
 import retrofit2.Response;
 
@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static com.bynder.sdk.model.MediaType.IMAGE;
 
-public class BynderMetapropertyServiceImpl implements BynderAssetService<BynderMetaproperties> {
+public class BynderMetapropertyServiceImpl implements BynderAssetService<BynderMetapropertyCollection> {
 
     private final BynderService bynderService;
 
@@ -22,7 +22,7 @@ public class BynderMetapropertyServiceImpl implements BynderAssetService<BynderM
         this.bynderService = bynderService;
     }
 
-    public BynderMetaproperties synchronousQuery() throws IllegalAccessException {
+    public BynderMetapropertyCollection synchronousQuery() throws IllegalAccessException {
         // Get an instance of the asset bank service to perform Bynder Asset Bank operations.
         AssetBankService assetBankService = bynderService.getAssetBankService();
 
@@ -33,7 +33,7 @@ public class BynderMetapropertyServiceImpl implements BynderAssetService<BynderM
                                 .setType(IMAGE))
                         .blockingSingle();
 
-        return new BynderMetaproperties(
+        return new BynderMetapropertyCollection(
                 collect(metapropertyResponse));
 
     }

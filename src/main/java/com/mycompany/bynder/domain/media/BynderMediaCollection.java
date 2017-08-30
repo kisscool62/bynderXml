@@ -13,6 +13,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BynderMedias implements BynderAssetCollection {
+public class BynderMediaCollection implements BynderAssetCollection {
     private List<BynderMedia> bynderMedias;
 }

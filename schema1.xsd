@@ -3,11 +3,11 @@
 
   <xs:element name="bynderMedia" type="bynderMedia"/>
 
-  <xs:element name="bynderMedias" type="bynderMedias"/>
+  <xs:element name="bynderMediaCollection" type="bynderMediaCollection"/>
 
-  <xs:complexType name="bynderMedias">
+  <xs:complexType name="bynderMediaCollection">
     <xs:sequence>
-      <xs:element name="bynderMedias" type="bynderMedia" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="bynderMediaCollection" type="bynderMedia" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 

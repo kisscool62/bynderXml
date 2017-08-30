@@ -1,7 +1,7 @@
 package com.mycompany.bynder;
 
 import com.mycompany.bynder.domain.media.BynderMedia;
-import com.mycompany.bynder.domain.media.BynderMedias;
+import com.mycompany.bynder.domain.media.BynderMediaCollection;
 import com.mycompany.bynder.service.bynder.BynderAssetService;
 import com.mycompany.bynder.service.xml.BynderMediaXMLServiceImpl;
 import com.mycompany.bynder.service.xml.BynderXMLService;
@@ -30,24 +30,24 @@ public class XMLWriterServiceTest {
         List<BynderMedia> dummyList = new ArrayList<BynderMedia>(2);
         dummyList.add(newXMLMedia("first one"));
         dummyList.add(newXMLMedia("second one"));
-        BynderMedias bynderMedias = new BynderMedias(dummyList);
+        BynderMediaCollection bynderMediaCollection = new BynderMediaCollection(dummyList);
 
-        when(mockBynderAssetService.synchronousQuery()).thenReturn(bynderMedias);
+        when(mockBynderAssetService.synchronousQuery()).thenReturn(bynderMediaCollection);
 
         //when
 
         BynderXMLService bynderXMLService = new BynderMediaXMLServiceImpl();
-        File xmlFile = bynderXMLService.toXMLFile("xmlFile.xml", bynderMedias);
+        File xmlFile = bynderXMLService.toXMLFile("xmlFile.xml", bynderMediaCollection);
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMediaCollection.class);
 
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        BynderMedias unmarshal = (BynderMedias) unmarshaller.unmarshal(xmlFile);
+        BynderMediaCollection unmarshal = (BynderMediaCollection) unmarshaller.unmarshal(xmlFile);
 
         //then
-        assertThat(bynderMedias).isEqualTo(unmarshal);
+        assertThat(bynderMediaCollection).isEqualTo(unmarshal);
 
-        //System.out.println(bynderXMLService.toXMLString(bynderMedias));
+        //System.out.println(bynderXMLService.toXMLString(bynderMediaCollection));
 
 
     }

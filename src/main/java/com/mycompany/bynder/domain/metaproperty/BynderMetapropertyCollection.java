@@ -13,6 +13,6 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BynderMetaproperties implements BynderAssetCollection {
+public class BynderMetapropertyCollection implements BynderAssetCollection {
     private Map<String, BynderMetaproperty> bynderMetapropertyMap;
 }

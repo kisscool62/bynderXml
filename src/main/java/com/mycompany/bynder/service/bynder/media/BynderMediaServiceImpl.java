@@ -5,8 +5,7 @@ import com.bynder.sdk.query.MediaQuery;
 import com.bynder.sdk.service.AssetBankService;
 import com.bynder.sdk.service.BynderService;
 import com.mycompany.bynder.domain.media.BynderMedia;
-import com.mycompany.bynder.domain.media.BynderMedias;
-import com.mycompany.bynder.service.bynder.BynderAssetService;
+import com.mycompany.bynder.domain.media.BynderMediaCollection;
 import com.mycompany.bynder.service.bynder.BynderMediaService;
 import retrofit2.Response;
 
@@ -23,7 +22,7 @@ public class BynderMediaServiceImpl implements BynderMediaService {
         this.bynderService = bynderService;
     }
 
-    public BynderMedias synchronousQuery() throws IllegalAccessException {
+    public BynderMediaCollection synchronousQuery() throws IllegalAccessException {
         // Get an instance of the asset bank service to perform Bynder Asset Bank operations.
         AssetBankService assetBankService = bynderService.getAssetBankService();
 
@@ -36,7 +35,7 @@ public class BynderMediaServiceImpl implements BynderMediaService {
                                 .setPage(1))
                         .blockingSingle();
 
-        return new BynderMedias(
+        return new BynderMediaCollection(
                 collect(mediaResponse));
 
     }

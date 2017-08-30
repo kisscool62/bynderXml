@@ -11,6 +11,7 @@ import java.net.URL;
 
 public class BynderServiceFactory {
 
+    private BynderServiceFactory() {}
 
     public static BynderService create(
             String urlString,

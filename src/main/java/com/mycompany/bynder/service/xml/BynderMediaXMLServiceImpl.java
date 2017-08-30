@@ -1,6 +1,6 @@
 package com.mycompany.bynder.service.xml;
 
-import com.mycompany.bynder.domain.media.BynderMedias;
+import com.mycompany.bynder.domain.media.BynderMediaCollection;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -17,7 +17,7 @@ import java.io.StringWriter;
 
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
-public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMedias>{
+public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMediaCollection>{
 
     private static final String ROOT_NAME = "bynderMedias";
 
@@ -31,13 +31,13 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMedias>
         }
     }
 
-    public File toXMLFile(String fileName, BynderMedias bynderMedias) throws JAXBException, IOException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
+    public File toXMLFile(String fileName, BynderMediaCollection bynderMediaCollection) throws JAXBException, IOException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMediaCollection.class);
         jaxbContext.generateSchema(new MediaOutputResolver());
-        JAXBElement<BynderMedias> jaxbElement = new JAXBElement<BynderMedias>(
+        JAXBElement<BynderMediaCollection> jaxbElement = new JAXBElement<BynderMediaCollection>(
                 new QName(ROOT_NAME),
-                BynderMedias.class,
-                bynderMedias);
+                BynderMediaCollection.class,
+                bynderMediaCollection);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(JAXB_FORMATTED_OUTPUT, true);
 
@@ -48,13 +48,13 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMedias>
     }
 
 
-    public String toXMLString(BynderMedias bynderMedias) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
+    public String toXMLString(BynderMediaCollection bynderMediaCollection) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMediaCollection.class);
 
-        JAXBElement<BynderMedias> jaxbElement = new JAXBElement<BynderMedias>(
+        JAXBElement<BynderMediaCollection> jaxbElement = new JAXBElement<BynderMediaCollection>(
                 new QName(ROOT_NAME),
-                BynderMedias.class,
-                bynderMedias);
+                BynderMediaCollection.class,
+                bynderMediaCollection);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(JAXB_FORMATTED_OUTPUT, true);
         StringWriter stringWriter = new StringWriter();
