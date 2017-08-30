@@ -40,7 +40,8 @@ public class BynderMetaproperty {
     /**
      * Child metaproperty options.
      */
-    private List<MetapropertyOption> options = new ArrayList<MetapropertyOption>();
+    //TODO create a custom MetapropertyOption to be able to set values
+    private List<MetapropertyOption> options;
     /**
      * True if metaproperty option has filterable turned on.
      */
@@ -59,6 +60,13 @@ public class BynderMetaproperty {
                 .isFilterable(metaproperty.isFilterable())
                 .zindex(metaproperty.getZindex())
                 .build();
+    }
+
+    public void addOption(MetapropertyOption option){
+        if (this.options != null){
+            this.options = new ArrayList<MetapropertyOption>();
+        }
+        this.options.add(option);
     }
 
 

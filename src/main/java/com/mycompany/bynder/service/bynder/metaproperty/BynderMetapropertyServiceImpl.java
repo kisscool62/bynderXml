@@ -7,6 +7,7 @@ import com.bynder.sdk.service.BynderService;
 import com.mycompany.bynder.domain.metaproperty.BynderMetaproperty;
 import com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection;
 import com.mycompany.bynder.service.bynder.BynderAssetService;
+import com.mycompany.bynder.service.bynder.BynderMetapropertyService;
 import retrofit2.Response;
 
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 import static com.bynder.sdk.model.MediaType.IMAGE;
 
-public class BynderMetapropertyServiceImpl implements BynderAssetService<BynderMetapropertyCollection> {
+public class BynderMetapropertyServiceImpl implements BynderMetapropertyService {
 
     private final BynderService bynderService;
 

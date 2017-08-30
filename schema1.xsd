@@ -1,67 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="bynderMedia" type="bynderMedia"/>
+  <xs:element name="bynderMetaproperties" type="bynderMetapropertyCollection"/>
 
-  <xs:element name="bynderMediaCollection" type="bynderMediaCollection"/>
+  <xs:element name="bynderMetaproperty" type="bynderMetaproperty"/>
 
-  <xs:complexType name="bynderMediaCollection">
+  <xs:complexType name="bynderMetapropertyCollection">
     <xs:sequence>
-      <xs:element name="bynderMediaCollection" type="bynderMedia" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="bynderMedia">
-    <xs:sequence>
-      <xs:element name="archive" type="xs:boolean" minOccurs="0"/>
-      <xs:element name="brandId" type="xs:string" minOccurs="0"/>
-      <xs:element name="copyright" type="xs:string" minOccurs="0"/>
-      <xs:element name="dateCreated" type="xs:string" minOccurs="0"/>
-      <xs:element name="dateModified" type="xs:string" minOccurs="0"/>
-      <xs:element name="datePublished" type="xs:string" minOccurs="0"/>
-      <xs:element name="description" type="xs:string" minOccurs="0"/>
-      <xs:element name="extensions" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="fileSize" type="xs:long"/>
-      <xs:element name="height" type="xs:int"/>
-      <xs:element name="id" type="xs:string" minOccurs="0"/>
-      <xs:element name="isPublic" type="xs:boolean" minOccurs="0"/>
-      <xs:element name="mediaItems" type="mediaItem" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="name" type="xs:string" minOccurs="0"/>
-      <xs:element name="orientation" type="xs:string" minOccurs="0"/>
-      <xs:element name="original" type="xs:string" minOccurs="0"/>
-      <xs:element name="propertyOptions" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="tags" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="thumbnails">
+      <xs:element name="bynderMetapropertyMap">
         <xs:complexType>
           <xs:sequence>
             <xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="key" minOccurs="0" type="xs:string"/>
-                  <xs:element name="value" minOccurs="0" type="xs:string"/>
+                  <xs:element name="value" minOccurs="0" type="bynderMetaproperty"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="type" type="mediaType" minOccurs="0"/>
-      <xs:element name="videoPreviewURLs" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="width" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="mediaItem">
-    <xs:sequence/>
+  <xs:complexType name="bynderMetaproperty">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="isFilterable" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="label" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="options" type="metapropertyOption" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="zindex" type="xs:int"/>
+    </xs:sequence>
   </xs:complexType>
 
-  <xs:simpleType name="mediaType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="DOCUMENT"/>
-      <xs:enumeration value="IMAGE"/>
-      <xs:enumeration value="VIDEO"/>
-      <xs:enumeration value="AUDIO"/>
-    </xs:restriction>
-  </xs:simpleType>
+  <xs:complexType name="metapropertyOption">
+    <xs:sequence/>
+  </xs:complexType>
 </xs:schema>
 

@@ -3,9 +3,12 @@ package com.mycompany.bynder;
 
 import com.bynder.sdk.model.Media;
 import com.bynder.sdk.model.MediaItem;
+import com.bynder.sdk.model.MetapropertyOption;
+import com.bynder.sdk.query.MetapropertyField;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mycompany.bynder.domain.media.BynderMedia;
+import com.mycompany.bynder.domain.metaproperty.BynderMetaproperty;
 
 import java.util.List;
 import java.util.Map;
@@ -50,6 +53,18 @@ public class DomainUtils {
                 .videoPreviewURLs(items)
                 .width(numberi)
                 .build();
+    }
+
+    public static BynderMetaproperty newXMLMetaProperty(String id){
+
+        BynderMetaproperty metaproperty = BynderMetaproperty.builder()
+                .id(id)
+                .isFilterable(true)
+                .label("label")
+                .name("name")
+                .zindex(2)
+                .build();
+        return metaproperty;
     }
 
     public static Media newMedia(String id){

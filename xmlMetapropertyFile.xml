@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bynderMetaproperties>
+    <bynderMetapropertyMap>
+        <entry>
+            <key>bob_button</key>
+            <value>
+                <id>second one</id>
+                <isFilterable>true</isFilterable>
+                <label>label</label>
+                <name>name</name>
+                <zindex>2</zindex>
+            </value>
+        </entry>
+        <entry>
+            <key>Colour</key>
+            <value>
+                <id>first one</id>
+                <isFilterable>true</isFilterable>
+                <label>label</label>
+                <name>name</name>
+                <zindex>2</zindex>
+            </value>
+        </entry>
+    </bynderMetapropertyMap>
+</bynderMetaproperties>

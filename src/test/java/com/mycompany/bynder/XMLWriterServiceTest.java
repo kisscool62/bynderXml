@@ -37,7 +37,7 @@ public class XMLWriterServiceTest {
         //when
 
         BynderXMLService bynderXMLService = new BynderMediaXMLServiceImpl();
-        File xmlFile = bynderXMLService.toXMLFile("xmlFile.xml", bynderMediaCollection);
+        File xmlFile = bynderXMLService.toXMLFile("xmlMediaFile.xml", bynderMediaCollection);
 
         JAXBContext jaxbContext = JAXBContext.newInstance(BynderMediaCollection.class);
 

@@ -1,6 +1,6 @@
 package com.mycompany.bynder.service.xml;
 
-import com.mycompany.bynder.domain.media.BynderMediaCollection;
+import com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -15,11 +15,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import static com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection.ROOT_NAME;
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
 
-public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMediaCollection>{
-
-    private static final String ROOT_NAME = "bynderMedias";
+public class BynderMetaPropertyXMLServiceImpl implements BynderXMLService<BynderMetapropertyCollection>{
 
     private class MediaOutputResolver extends SchemaOutputResolver{
         @Override
@@ -31,13 +30,13 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMediaCo
         }
     }
 
-    public File toXMLFile(String fileName, BynderMediaCollection bynderMediaCollection) throws JAXBException, IOException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMediaCollection.class);
+    public File toXMLFile(String fileName, BynderMetapropertyCollection bynderMetapropertyCollection) throws JAXBException, IOException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMetapropertyCollection.class);
         jaxbContext.generateSchema(new MediaOutputResolver());
-        JAXBElement<BynderMediaCollection> jaxbElement = new JAXBElement<BynderMediaCollection>(
+        JAXBElement<BynderMetapropertyCollection> jaxbElement = new JAXBElement<BynderMetapropertyCollection>(
                 new QName(ROOT_NAME),
-                BynderMediaCollection.class,
-                bynderMediaCollection);
+                BynderMetapropertyCollection.class,
+                bynderMetapropertyCollection);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(JAXB_FORMATTED_OUTPUT, true);
 
@@ -48,16 +47,15 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMediaCo
     }
 
 
-    public String toXMLString(BynderMediaCollection bynderMediaCollection) throws JAXBException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMediaCollection.class);
+    public String toXMLString(BynderMetapropertyCollection bynderMetapropertyCollection) throws JAXBException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMetapropertyCollection.class);
 
-        JAXBElement<BynderMediaCollection> jaxbElement = new JAXBElement<BynderMediaCollection>(
+        JAXBElement<BynderMetapropertyCollection> jaxbElement = new JAXBElement<BynderMetapropertyCollection>(
                 new QName(ROOT_NAME),
-                BynderMediaCollection.class,
-                bynderMediaCollection);
+                BynderMetapropertyCollection.class,
+                bynderMetapropertyCollection);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(JAXB_FORMATTED_OUTPUT, true);
-
         StringWriter stringWriter = new StringWriter();
         jaxbMarshaller.marshal(jaxbElement, stringWriter);
         return stringWriter.toString();
