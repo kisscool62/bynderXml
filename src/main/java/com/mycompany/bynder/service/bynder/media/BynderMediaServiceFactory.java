@@ -1,6 +1,7 @@
-package com.mycompany.bynder.service.bynder;
+package com.mycompany.bynder.service.bynder.media;
 
 import com.bynder.sdk.service.BynderService;
+import com.mycompany.bynder.service.bynder.BynderMediaService;
 
 public class BynderMediaServiceFactory {
     public static BynderMediaService create(BynderService bynderService){

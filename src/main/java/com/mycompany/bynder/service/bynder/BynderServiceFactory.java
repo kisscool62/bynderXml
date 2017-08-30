@@ -4,7 +4,6 @@ package com.mycompany.bynder.service.bynder;
 import com.bynder.sdk.model.Settings;
 import com.bynder.sdk.service.BynderService;
 import com.bynder.sdk.service.impl.BynderServiceImpl;
-import com.google.common.base.Preconditions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,12 +19,11 @@ public class BynderServiceFactory {
             String token,
             String tokenSecret) throws MalformedURLException {
 
-
-        checkNotNull(urlString);
-        checkNotNull(consumerKey);
-        checkNotNull(consumerSecret);
-        checkNotNull(token);
-        checkNotNull(tokenSecret);
+        checkNotNull(urlString, "urlString should not be null");
+        checkNotNull(consumerKey, "consumerKey should not be null");
+        checkNotNull(consumerSecret, "consumerSecret should not be null");
+        checkNotNull(token, "token should not be null");
+        checkNotNull(tokenSecret, "tokenSecret should not be null");
 
         return BynderServiceImpl.create(
                 new Settings(
@@ -37,7 +35,9 @@ public class BynderServiceFactory {
 
     }
 
-    private static void checkNotNull(String object) {
-
+    private static void checkNotNull(Object object, String message) {
+        if(object == null){
+            throw new IllegalArgumentException(message);
+        }
     }
 }

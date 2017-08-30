@@ -6,10 +6,13 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.SchemaOutputResolver;
 import javax.xml.namespace.QName;
+import javax.xml.transform.Result;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.StringWriter;
 
 import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
@@ -18,10 +21,19 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMedias>
 
     private static final String ROOT_NAME = "bynderMedias";
 
-    @Override
-    public File toXMLFile(String fileName, BynderMedias bynderMedias) throws JAXBException, FileNotFoundException {
-        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
+    private class MediaOutputResolver extends SchemaOutputResolver{
+        @Override
+        public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException {
+            File file = new File(suggestedFileName);
+            StreamResult result = new StreamResult(file);
+            result.setSystemId(file.toURI().toURL().toString());
+            return result;
+        }
+    }
 
+    public File toXMLFile(String fileName, BynderMedias bynderMedias) throws JAXBException, IOException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
+        jaxbContext.generateSchema(new MediaOutputResolver());
         JAXBElement<BynderMedias> jaxbElement = new JAXBElement<BynderMedias>(
                 new QName(ROOT_NAME),
                 BynderMedias.class,
@@ -35,7 +47,7 @@ public class BynderMediaXMLServiceImpl implements BynderXMLService<BynderMedias>
         return xmlFile;
     }
 
-    @Override
+
     public String toXMLString(BynderMedias bynderMedias) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(BynderMedias.class);
 
