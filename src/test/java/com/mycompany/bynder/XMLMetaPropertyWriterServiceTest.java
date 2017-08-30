@@ -5,7 +5,6 @@ import com.mycompany.bynder.domain.metaproperty.BynderMetapropertyCollection;
 import com.mycompany.bynder.service.bynder.BynderAssetService;
 import com.mycompany.bynder.service.xml.api.BynderMetapropertyXMLService;
 import com.mycompany.bynder.service.xml.impl.BynderMetaPropertyXMLServiceImpl;
-import com.mycompany.bynder.service.xml.api.BynderXMLService;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
@@ -31,7 +30,7 @@ public class XMLMetaPropertyWriterServiceTest {
         dummyList.put("bob_button", newXMLMetaProperty("second one"));
         BynderMetapropertyCollection bynderMetapropertyCollection = new BynderMetapropertyCollection(dummyList);
 
-        when(mockBynderAssetService.synchronousQuery()).thenReturn(bynderMetapropertyCollection);
+        when(mockBynderAssetService.getAll()).thenReturn(bynderMetapropertyCollection);
 
         //when
 

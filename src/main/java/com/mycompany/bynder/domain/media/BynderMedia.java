@@ -4,6 +4,7 @@ import com.bynder.sdk.api.BynderApi;
 import com.bynder.sdk.model.Media;
 import com.bynder.sdk.model.MediaItem;
 import com.bynder.sdk.model.MediaType;
+import com.mycompany.bynder.domain.BynderEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -24,7 +25,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BynderMedia {
+public class BynderMedia implements BynderEntity {
 
     /**
      * Media id.

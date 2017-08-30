@@ -25,12 +25,12 @@ public class App {
         );
 
         BynderMediaService mediaService = BynderMediaServiceFactory.create(service);
-        BynderMediaCollection bynderMediaCollection = mediaService.synchronousQuery();
+        BynderMediaCollection bynderMediaCollection = mediaService.getAll();
         BynderXMLService bynderMediaXMLService = new BynderMediaXMLServiceImpl();
         bynderMediaXMLService.toXMLFile("xmlMedia.xml", bynderMediaCollection);
 
         BynderMetapropertyService metapropertyService = BynderMetapropertyServiceFactory.create(service);
-        BynderMetapropertyCollection bynderMetapropertyCollection = metapropertyService.synchronousQuery();
+        BynderMetapropertyCollection bynderMetapropertyCollection = metapropertyService.getAll();
         BynderXMLService bynderMetaXMLService = new BynderMediaXMLServiceImpl();
         bynderMetaXMLService.toXMLFile("xmlMetaProperty.xml", bynderMetapropertyCollection);
 

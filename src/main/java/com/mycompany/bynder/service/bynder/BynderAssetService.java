@@ -4,6 +4,6 @@ import com.mycompany.bynder.domain.BynderAssetCollection;
 
 public interface BynderAssetService<T extends BynderAssetCollection> {
 
-    T synchronousQuery() throws IllegalAccessException;
+    T getAll() throws IllegalAccessException;
 }
 

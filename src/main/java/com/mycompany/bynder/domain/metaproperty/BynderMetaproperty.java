@@ -2,6 +2,7 @@ package com.mycompany.bynder.domain.metaproperty;
 
 import com.bynder.sdk.model.Metaproperty;
 import com.bynder.sdk.model.MetapropertyOption;
+import com.mycompany.bynder.domain.BynderEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -22,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BynderMetaproperty {
+public class BynderMetaproperty implements BynderEntity {
 
 
     /**

@@ -32,7 +32,7 @@ public class XMLWriterServiceTest {
         dummyList.add(newXMLMedia("second one"));
         BynderMediaCollection bynderMediaCollection = new BynderMediaCollection(dummyList);
 
-        when(mockBynderAssetService.synchronousQuery()).thenReturn(bynderMediaCollection);
+        when(mockBynderAssetService.getAll()).thenReturn(bynderMediaCollection);
 
         //when
 

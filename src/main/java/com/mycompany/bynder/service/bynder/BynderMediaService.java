@@ -4,6 +4,6 @@ import com.mycompany.bynder.domain.media.BynderMediaCollection;
 
 public interface BynderMediaService extends BynderAssetService<BynderMediaCollection> {
 
-    BynderMediaCollection synchronousQuery() throws IllegalAccessException;
+    BynderMediaCollection getAll() throws IllegalAccessException;
 }
 
