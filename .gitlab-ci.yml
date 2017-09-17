@@ -16,6 +16,5 @@ maven:build:
         - "mvn $MAVEN_CLI_OPTS clean compile"
     artifacts:
     when: on_success
-    expire_in: 1 day
     paths:
-    - target/
+        - target/
