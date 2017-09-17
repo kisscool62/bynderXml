@@ -5,7 +5,7 @@ cache:
         - $HOME/.m2/
 variables:
     MAVEN_CLI_OPTS: "-s /.m2/settings.xml -B"
-    SONAR_PROJECT_NAME: "project-demo"
+    SONAR_PROJECT_NAME: "bynderXML"
 stages:
     - build
 
